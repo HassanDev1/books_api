@@ -27,7 +27,11 @@ class BooksApp extends React.Component {
       })
       
   }
-
+  handleShowSearchPage=()=>{
+      this.setState({
+          showSearchPage: !this.state.showSearchPage
+      })
+  }
 
   render() {
 
@@ -36,7 +40,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <BookListSearch  books={this.state.books} showSearchPage={this.state.showSearchPage} />
+          <BookListSearch  books={this.state.books} handleShowSearchPage={this.handleShowSearchPage} />
         ) : (
           <div className="list-books">
             <div className="list-books-title">
@@ -44,9 +48,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <MyReads/>       
-                <WantToRead/>
-                <Read/>
+                <MyReads books={this.state.books}/>       
+                <WantToRead books={this.state.books}/>
+                <Read books={this.state.books}/>
               </div>
             </div>
             <div className="open-search">
