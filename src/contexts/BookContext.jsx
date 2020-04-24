@@ -6,28 +6,32 @@ import * as BooksAPI from '../BooksAPI'
 
  const BookContextProvider = (props) => {
      const [books, setbooks] = useState([]);
+     
+     
+     
+
      useEffect (() => {
        async function getBooks(){
-           await BooksAPI.getAll()
-           .then((book)=>setbooks([...books,book]))
-           
+        //    await BooksAPI.getAll()
+        //    .then((book)=>setbooks(book));
+       const myBooks = await BooksAPI.getAll();  
+       setbooks(myBooks)   
         }
-        getBooks();   
-        
-      
-    }, );
+        getBooks();
+        return()=>{
+        }
+               
+    }, );   
    
-    
- const updateBook= async(book,shelf)=>{
-    books.forEach(b=>{
-        if(b.id===book.id){
-            b.shelf = shelf
+ const updateBook= (book,shelf)=>{
+    books.forEach(b=>{      
+        if(b.id===book.id ){     
+                b.shelf = shelf  
         }
-    })
-    console.log(shelf)
-    await BooksAPI.update(book,shelf);
-
+    })    
+     BooksAPI.update(book,shelf);    
 }
+
      return ( 
          <BookContext.Provider value={{books,updateBook}}>
              {props.children}

@@ -6,6 +6,7 @@ import Read from "./read";
 import BookSearch from "./booksearch";
 
 
+
 class BooksApp extends React.Component {
   state = {
     /**
@@ -20,7 +21,7 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
+        {showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
               <a
@@ -54,7 +55,6 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                
                   <CurrentlyReading/> 
                   <WantToRead/>
                   <Read/>

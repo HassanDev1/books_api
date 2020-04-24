@@ -5,7 +5,7 @@ const WantToRead = () => {
    
    const{books,updateBook} = useContext(BookContext)
    const wantToRead = books.filter(b=>b.shelf==='wantToRead');
-
+  
     return ( 
         <div className="bookshelf">
                   <h2 className="bookshelf-title">Want To Read</h2>
@@ -23,11 +23,11 @@ const WantToRead = () => {
                                 width: 128,
                                 height: 193,
                                 backgroundImage:
-                                  `url(${book.imageLinks.thumbnail})`,
+                                  `url(${book.imageLinks?book.imageLinks.thumbnail:''})`,
                               }}
                             ></div>
                             <div className="book-shelf-changer">
-                              <select>
+                              <select value={book.shelf} onChange={(e)=>updateBook(book,e.target.value)}>
                                 <option value="move" >
                                   Move to...
                                 </option>
@@ -48,9 +48,7 @@ const WantToRead = () => {
                       </li>
                             )
 
-                        })}
-                      
-                      
+                        })} 
                     </ol>
                   </div>
                 </div>
